@@ -1,0 +1,8 @@
+nohup: ignoring input
+
+> gestao-chamados-stands@0.0.0 preview
+> vite preview --port 4000 --host 0.0.0.0
+
+Port 4000 is in use, trying another one...
+  ➜  Local:   http://localhost:4001/
+  ➜  Network: http://169.254.0.21:4001/
