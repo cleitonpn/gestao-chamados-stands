@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { notificationService } from '../services/notificationService';
+// AQUI ESTÁ O AJUSTE: removi as chaves {} da importação
+import notificationService from '../services/notificationService';
 
 const NotificationCenter = () => {
   const [notifications, setNotifications] = useState([]);
@@ -274,4 +275,3 @@ const NotificationCenter = () => {
 };
 
 export default NotificationCenter;
-
