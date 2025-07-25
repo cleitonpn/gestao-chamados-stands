@@ -1,11 +1,15 @@
-// Importa os scripts do Firebase. Você não precisa alterar essas URLs.
+// Importa os scripts do Workbox e do Firebase
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js');
 importScripts("https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js");
 
+// Esta linha é a "marcadora" que o plugin PWA precisa para injetar a lista de arquivos.
+// Não remova!
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+
 // Cole aqui as configurações do seu projeto Firebase
-// Você encontra isso no seu Console do Firebase > Configurações do Projeto
 const firebaseConfig = {
-  apiKey: "AIzaSyAJRaV-rBHBbbsygASDyY6ZbW1WJ8SKu8A",
+   apiKey: "AIzaSyAJRaV-rBHBbbsygASDyY6ZbW1WJ8SKu8A",
   authDomain: "gestao-chamados-stands.firebaseapp.com",
   projectId: "gestao-chamados-stands",
   storageBucket: "gestao-chamados-stands.firebasestorage.app",
@@ -15,12 +19,9 @@ const firebaseConfig = {
 
 // Inicializa o Firebase
 firebase.initializeApp(firebaseConfig);
-
-// Inicializa o serviço de mensagens
 const messaging = firebase.messaging();
 
-// Opcional: Manipulador para notificações em segundo plano
-// Este código é executado quando seu app recebe uma notificação enquanto está em segundo plano.
+// Manipulador para notificações em segundo plano
 messaging.onBackgroundMessage((payload) => {
   console.log(
     "[firebase-messaging-sw.js] Received background message ",
@@ -30,7 +31,7 @@ messaging.onBackgroundMessage((payload) => {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: "/icons/icon-192x192.png" // Caminho para um ícone padrão
+    icon: "/icons/icon-192x192.png"
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
